@@ -94,3 +94,19 @@ def signup(request):
         "form": form,
     }
     return render(request, "app/signup.html", context)
+
+@login_required
+def user_edit(request):
+    if request.method == "POST":
+        form = forms.UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    
+    else:
+        form = forms.UserUpdateForm(instance=request.user)
+            
+    context = {
+        "form": form,
+    }
+    return render(request, "app/user_edit.html", context)

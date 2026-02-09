@@ -21,6 +21,7 @@
                     {% csrf_token %}
                     <button type="submit">ログアウト</button>
                 </form>
+                <a href="{% url "user_edit" %}">ユーザー設定変更</a>
                 {% endif %}
             </nav>
         {% endblock header %}
