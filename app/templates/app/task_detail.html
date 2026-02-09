@@ -7,7 +7,9 @@
         <div class="task_list">
                 <div>{{ task.title }}</div>
                 <div>{{ task.created_at|date:"Y年n月d日 H：i" }}</div>
+                {% if task.photo %}
                 <img src="{{ task.photo.url }}" alt="">
+                {% endif %}
             </a>
         </div>
     {% else %}
