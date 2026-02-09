@@ -1,0 +1,11 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>本当に削除しますか？</div>
+    <button type="submit">削除</button>
+    <a href="{% url "task_detail" task.pk %}">キャンセル</a>
+</form>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block extra_style %}
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock extra_style %}
+{% block content %}
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="task_list">
+                <a href="{% url "task_detail" task.pk %}">
+                    <div>タスク名：{{ task.title }}</div>
+                    <div>作成日：{{ task.created_at|date:"Y年n月d日 H：i" }}</div>
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div>
+            作成したタスクはありません。
+        </div>
+    {% endif %}
+{% endblock content %}

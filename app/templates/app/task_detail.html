@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block extra_style %}
+{% endblock extra_style %}
+{% block content %}
+    {% if task %}
+        <div class="task_list">
+                <div>{{ task.title }}</div>
+                <div>{{ task.created_at|date:"Y年n月d日 H：i" }}</div>
+                <img src="{{ task.photo.url }}" alt="">
+            </a>
+        </div>
+    {% else %}
+        <div>
+            作成したタスクはありません。
+        </div>
+    {% endif %}
+    <a href="{% url "task_edit" task.pk %}">編集する</a>
+    <a href="{% url "task_delete" task.pk %}">削除する</a>
+{% endblock content %}
