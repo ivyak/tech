@@ -8,4 +8,6 @@ urlpatterns = [
     path('task_detail/<int:pk>', views.task_detail, name="task_detail"),
     path('task_edit/<int:pk>', views.task_edit, name="task_edit"),
     path('task_delete/<int:pk>', views.task_delete, name="task_delete"),
+    path('login', views.CustomLoginView.as_view(), name="login"),
+    path('logout', views.CustomLogoutView.as_view(), name="logout"),
 ]

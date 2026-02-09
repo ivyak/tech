@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.views import LoginView, LogoutView
 from app import forms
 from app.models import Task
 
@@ -70,3 +70,10 @@ def task_delete(request, pk):
         "task": task,
     }
     return render(request, "app/task_delete.html", context)
+
+class CustomLoginView(LoginView):
+    template_name = "app/login.html"
+    redirect_authenticated_user = True
+
+class CustomLogoutView(LogoutView):
+    pass

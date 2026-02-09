@@ -1,0 +1,12 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block header %}{% endblock header %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ログイン</button>
+</form>
+{% endblock content %}

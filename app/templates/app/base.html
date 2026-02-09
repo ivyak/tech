@@ -10,12 +10,20 @@
 </head>
 <body>
     <header>
-        <a href="{% url "home" %}" class="header title">Task App</a>
-        <nav class="header">
-            <div class="container">
-                <a href="{% url "task_create" %}" class="nav_link">タスクを作成する</a>
-            </div>
-        </nav>
+        {% block header %}
+            <a href="{% url "home" %}" class="header title">Task App</a>
+            <nav class="header">
+                <div class="container">
+                    <a href="{% url "task_create" %}" class="nav_link">タスクを作成する</a>
+                </div>
+                {% if user.is_authenticated %}
+                <form action="{% url "logout" %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">ログアウト</button>
+                </form>
+                {% endif %}
+            </nav>
+        {% endblock header %}
     </header>
     <main>
         {% block content %}{% endblock content %}
