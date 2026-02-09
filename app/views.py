@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from app import forms
 from app.models import Task
+from django.contrib.auth import login
 
 
 # Create your views here.
@@ -77,3 +78,19 @@ class CustomLoginView(LoginView):
 
 class CustomLogoutView(LogoutView):
     pass
+
+def signup(request):
+    if request.method == "POST":
+        form = forms.CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("home")
+    
+    else:
+        form = forms.CustomUserCreationForm()
+            
+    context = {
+        "form": form,
+    }
+    return render(request, "app/signup.html", context)
